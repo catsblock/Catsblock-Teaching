@@ -7,7 +7,8 @@ import androidx.compose.material3.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import catsblock.teaching.ui.screens.LoginScreen
+// CRITICAL: Updated to match your exact folder structure
+import catsblock.teaching.screens.LoginScreen 
 import catsblock.teaching.ui.theme.CatsblockTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +23,6 @@ class MainActivity : ComponentActivity() {
                         LoginScreen { navController.navigate("feed") } 
                     }
                     composable("feed") { 
-                        // Implementation for FeedScreen goes here
                         Text("Feed Loaded") 
                     }
                 }
@@ -30,4 +30,3 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
