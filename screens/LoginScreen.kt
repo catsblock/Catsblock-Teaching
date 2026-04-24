@@ -1,4 +1,4 @@
-package catsblock.teaching.ui.screens
+package catsblock.teaching.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
