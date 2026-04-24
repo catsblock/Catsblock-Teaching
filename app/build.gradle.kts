@@ -1,4 +1,4 @@
-plugins { // Ensure this is lowercase
+plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
@@ -29,6 +29,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    // NEW: This tells Gradle how to handle duplicate files
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            merges += "META-INF/LICENSE*"
+        }
+    }
 }
 
 dependencies {
@@ -39,17 +47,15 @@ dependencies {
 
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
-    implementation("androidx.appcompat:appcompat:1.6.1") // Force-adding this here too
     
-    implementation("com.github.jeziellago:compose-markdown:0.4.1")
+    // We're switching to a more modern Markdown library that doesn't 
+    // drag in all those old appcompat problems.
+    implementation("dev.jeziellago:compose-markdown:0.5.0")
 }
 
 configurations.all {
     resolutionStrategy {
-        // These 4 are the ones causing your "Build Failed" logs
-        force("androidx.appcompat:appcompat:1.6.1")
         force("androidx.core:core-ktx:1.12.0")
-        force("androidx.drawerlayout:drawerlayout:1.2.0")
-        force("androidx.emoji2:emoji2:1.4.0")
+        force("androidx.appcompat:appcompat:1.6.1")
     }
 }
