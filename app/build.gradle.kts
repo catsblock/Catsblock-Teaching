@@ -17,21 +17,30 @@ android {
     }
 
     buildFeatures { compose = true }
-    composeOptions { kotlinCompilerExtensionVersion = "1.5.1" }
+    
+    composeOptions { 
+        // 1.5.10 is required for Kotlin 1.9.22 compatibility
+        kotlinCompilerExtensionVersion = "1.5.10" 
+    }
+    
+    // Highly recommended to add this to avoid Java version conflicts
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies {
-    // Firebase BoM from your image
-    implementation(platform("com.google.firebase:firebase-bom:34.12.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0")) // Updated BoM
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
 
-    // UI & Navigation
-    implementation("androidx.compose.material3:material3:1.2.0")
+    implementation("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    // Markdown & Syntax Highlighting
     implementation("com.github.jeziellago:compose-markdown:0.3.1")
 }
-
