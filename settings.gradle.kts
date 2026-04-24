@@ -1,6 +1,6 @@
 pluginManagement {
     repositories {
-        google() // <--- THIS IS THE MISSING KEY
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
@@ -10,9 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") } // Required for Markdown libraries
+        maven { url = uri("https://jitpack.io") }
     }
 }
 
-rootProject.name = "Catsblock Teaching"
+rootProject.name = "Catsblock-Teaching"
 include(":app")
