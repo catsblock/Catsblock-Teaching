@@ -19,11 +19,10 @@ android {
     buildFeatures { compose = true }
     
     composeOptions { 
-        // 1.5.10 is required for Kotlin 1.9.22 compatibility
+        // Correct version for Kotlin 1.9.22
         kotlinCompilerExtensionVersion = "1.5.10" 
     }
     
-    // Highly recommended to add this to avoid Java version conflicts
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -34,13 +33,24 @@ android {
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:33.1.0")) // Updated BoM
+    // Updated Firebase to match 2026 standards
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
 
+    // UI & Navigation
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    implementation("com.github.jeziellago:compose-markdown:0.3.1")
+    // Markdown - Updated to 0.4.1 to avoid the version crash you saw earlier
+    implementation("com.github.jeziellago:compose-markdown:0.4.1")
+}
+
+// CRITICAL: Add this to prevent the "HasConvention" or version clash errors
+configurations.all {
+    resolutionStrategy {
+        force("androidx.emoji2:emoji2:1.4.0")
+        force("androidx.core:core-ktx:1.12.0")
+    }
 }
