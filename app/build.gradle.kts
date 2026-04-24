@@ -30,7 +30,6 @@ android {
         jvmTarget = "17"
     }
 
-    // NEW: This tells Gradle how to handle duplicate files
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -40,17 +39,18 @@ android {
 }
 
 dependencies {
+    // Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
 
+    // UI & Navigation
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    // We're switching to a more modern Markdown library that doesn't 
-    // drag in all those old appcompat problems.
-    implementation("dev.jeziellago:compose-markdown:0.5.0")
+    // Fixed Markdown library path
+    implementation("com.github.jeziellago:compose-markdown:0.5.8")
 }
 
 configurations.all {
